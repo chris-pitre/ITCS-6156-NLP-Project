@@ -8,6 +8,11 @@ var allowed_characters = "[A-Za-z0-9.?! ]"
 func _ready():
 	grab_focus()
 
+func _input(event):
+	if(event.is_action_pressed("ui_accept")):
+		self.set_text("")
+		text_display.text = ""
+
 func _on_text_changed(new_text):
 	var old_caret_position = self.caret_column
 

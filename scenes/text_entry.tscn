@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i52st"]
 shader = ExtResource("2_0g88a")
-shader_parameter/height = 2.0
+shader_parameter/height = 3.0
 shader_parameter/frequency = 1.0
 shader_parameter/speed = 2.0
 
@@ -73,7 +73,6 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -84,13 +83,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -27.0
-offset_top = -13.5
-offset_right = 27.0
-offset_bottom = 20.5
+offset_left = -97.0
+offset_top = -62.5
+offset_right = 113.0
+offset_bottom = 55.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_uyhbi")
-expand_mode = 3
+expand_mode = 5
 
 [connection signal="text_changed" from="LineEdit" to="LineEdit" method="_on_text_changed"]
