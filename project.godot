@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="NLP-Project"
-run/main_scene="res://scenes/text_entry.tscn"
+run/main_scene="res://scenes/levels/test_level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
