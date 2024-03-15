@@ -3,6 +3,7 @@ extends Node2D
 
 @export_category("References")
 @export var character_body: CharacterBody2D
+@export var input_component: InputComponent
 
 @export_category("Settings")
 @export var max_speed: int = 150
@@ -20,11 +21,11 @@ func _physics_process(delta):
 		do_movement(delta)
 		
 func do_movement(delta):
-	input.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	
-	input = input.normalized()
-	
+	if input_component != null:
+		input = input_component.get_input_axis()
+	else:
+		push_error(name + " is missing movement input")
+		
 	if input == Vector2.ZERO:
 		character_body.velocity = character_body.velocity.move_toward(Vector2.ZERO, friction * delta)
 	else:
