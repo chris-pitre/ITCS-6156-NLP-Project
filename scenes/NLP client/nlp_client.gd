@@ -2,10 +2,11 @@ extends Node
 
 var udp := PacketPeerUDP.new()
 var python_script_path:= "src/Python-NLP/server.py"
+@export var show_terminal: bool
 var pid: int
 
 func _ready():
-	pid = OS.create_process("python", [python_script_path])
+	pid = OS.create_process("python", [python_script_path], show_terminal)
 	udp.connect_to_host("127.0.0.1", 12345)
 
 # Kill process when game is closed
