@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cx8er4f3rabi8"]
+[gd_scene load_steps=4 format=3 uid="uid://cx8er4f3rabi8"]
 
 [ext_resource type="PackedScene" uid="uid://coigv5gq0q5du" path="res://scenes/tilesets/forest_tilemap.tscn" id="1_efpcq"]
 [ext_resource type="PackedScene" uid="uid://5163sy5bhn50" path="res://scenes/player/player.tscn" id="2_tv5v8"]
+[ext_resource type="PackedScene" uid="uid://c7g8fcruocnbc" path="res://scenes/entities/Oracle/Oracle.tscn" id="3_v6omd"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -11,3 +12,7 @@ layer_1/tile_data = PackedInt32Array(131074, 262147, 2, 196610, 262147, 2, 26214
 
 [node name="Player" parent="." instance=ExtResource("2_tv5v8")]
 position = Vector2(567, 473)
+
+[node name="Oracle" parent="." instance=ExtResource("3_v6omd")]
+position = Vector2(578, 172)
+gravity_scale = 0.0

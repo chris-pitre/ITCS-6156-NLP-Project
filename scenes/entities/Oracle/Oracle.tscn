@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7g8fcruocnbc"]
+
+[ext_resource type="Texture2D" uid="uid://bo1j27ts7kv4w" path="res://assets/sprites/forest_tileset/TX Props.png" id="1_vsvph"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_arujg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a0nnp"]
+radius = 13.0
+height = 38.0
+
+[node name="Oracle" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_arujg")
+lock_rotation = true
+
+[node name="TxProps" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_vsvph")
+region_enabled = true
+region_rect = Rect2(445, 21, 37, 72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 23)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_a0nnp")
