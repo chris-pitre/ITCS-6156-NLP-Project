@@ -1,4 +1,5 @@
 import socket
+import model
 
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_socket:
     udp_socket.bind(('localhost', 12345))
@@ -7,8 +8,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_socket:
     # Listen for requests
     while True:
         data, address = udp_socket.recvfrom(1024)
-        print(f"Received Data from {address}: {data.decode()}")
+        message = data.decode()
+        if message == "<exit>": 
+            print(f"Received exit command! Closing Program")
+            break
+
+        print(f"Received Data from {address}: {message}")
         
-        # TODO: Integrate NLP Response Generation
-        response = b"Python Server Response!"
-        udp_socket.sendto(response, address)
+        response = model.generate_reponse(message)
+        udp_socket.sendto(response.encode(), address)
