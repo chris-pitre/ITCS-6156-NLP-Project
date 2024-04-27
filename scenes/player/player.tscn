@@ -1,14 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://5163sy5bhn50"]
 
 [ext_resource type="Texture2D" uid="uid://bpn8b53ei4o5e" path="res://icon.svg" id="1_7q7bd"]
-[ext_resource type="PackedScene" uid="uid://dus4n86c10rcn" path="res://scenes/components/movement_component.tscn" id="2_m81ko"]
-[ext_resource type="Script" path="res://scenes/components/input_component.gd" id="3_6tka4"]
+[ext_resource type="PackedScene" uid="uid://dus4n86c10rcn" path="res://scenes/components/Movement/movement_component.tscn" id="2_m81ko"]
+[ext_resource type="PackedScene" uid="uid://cin200r80si5u" path="res://scenes/components/Interact/interact_component.tscn" id="3_dlpwo"]
+[ext_resource type="PackedScene" uid="uid://0lab7nfrk32r" path="res://scenes/components/Input/input_component.tscn" id="4_ltb67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3jk"]
 size = Vector2(32, 32)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_raujk"]
-radius = 40.0125
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
@@ -20,23 +18,11 @@ texture = ExtResource("1_7q7bd")
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("character_body", "input_component") instance=ExtResource("2_m81ko")]
 character_body = NodePath("..")
 input_component = NodePath("../InputComponent")
-max_speed = null
-acceleration = null
-friction = null
 push_force = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2l3jk")
 
-[node name="InputComponent" type="Node2D" parent="." node_paths=PackedStringArray("interact_area")]
-script = ExtResource("3_6tka4")
-interact_area = NodePath("../InteractZone")
+[node name="InteractComponent" parent="." instance=ExtResource("3_dlpwo")]
 
-[node name="InteractZone" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractZone"]
-z_index = -1
-shape = SubResource("CircleShape2D_raujk")
-debug_color = Color(0.670588, 0.505882, 0.105882, 0.419608)
+[node name="InputComponent" parent="." instance=ExtResource("4_ltb67")]

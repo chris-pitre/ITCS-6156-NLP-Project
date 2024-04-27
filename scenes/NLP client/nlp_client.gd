@@ -5,7 +5,7 @@ var python_script_path:= "src/Python-NLP/server.py"
 @export var show_terminal: bool
 var pid: int
 
-@onready var textbox = $TextEntry/LineEdit
+@export var text_entry: LimitedTextInput
 
 func _ready():
 	pid = OS.create_process("python", [python_script_path], show_terminal)
@@ -26,7 +26,7 @@ func send_message(message: String):
 	udp.put_packet(message.to_utf8_buffer())
 	
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		send_message(textbox.text)
-		textbox.clear_text()
+	if event.is_action_pressed("ui_accept"): 
+		send_message(text_entry.text)
+		text_entry.clear_text()
 

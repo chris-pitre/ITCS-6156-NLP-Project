@@ -6,7 +6,8 @@ var allowed_characters = "[A-Za-z0-9.?! ]"
 @export var text_display: Label
 
 func _ready():
-	grab_focus()
+	#grab_focus()
+	pass 
 
 func _on_text_changed(new_text):
 	var old_caret_position = self.caret_column

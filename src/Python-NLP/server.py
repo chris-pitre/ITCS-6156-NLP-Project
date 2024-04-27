@@ -15,5 +15,5 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_socket:
 
         print(f"Received Data from {address}: {message}")
         
-        response = model.generate_reponse(message)
+        response = model.generate_response(message)
         udp_socket.sendto(response.encode(), address)
