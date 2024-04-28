@@ -28,6 +28,7 @@ shader_parameter/aliasing = 0.01
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_pdyux")
 
 [sub_resource type="Gradient" id="Gradient_hy0yf"]
+colors = PackedColorArray(0, 0, 0, 1, 1.92523e-07, 0.946784, 0.952028, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uyhbi"]
 gradient = SubResource("Gradient_hy0yf")
@@ -56,9 +57,9 @@ grow_vertical = 0
 size_flags_vertical = 4
 placeholder_text = "Please start typing..."
 script = ExtResource("1_kuhqh")
-text_display = NodePath("../Label")
+text_display = NodePath("../Text")
 
-[node name="Label" type="Label" parent="."]
+[node name="Text" type="Label" parent="."]
 material = SubResource("ShaderMaterial_i52st")
 layout_mode = 1
 anchors_preset = 8
@@ -76,7 +77,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="TextureRect" parent="Label"]
+[node name="ColorRect" type="TextureRect" parent="Text"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_dhvux")
 layout_mode = 1

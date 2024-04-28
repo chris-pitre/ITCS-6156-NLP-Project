@@ -11,8 +11,8 @@ func _process(delta):
 			break
 
 func _unhandled_input(event):
-	if event.is_action_pressed("Interact"):
+	if event.is_action_pressed("Interact") and interact_object:
 		interact(interact_object)
 
 func interact(object):
-	object.start_chat()
+	object.start_chat(get_parent())

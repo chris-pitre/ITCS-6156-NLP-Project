@@ -1,10 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwppdolqh1ymn"]
+[gd_scene load_steps=13 format=3 uid="uid://dwppdolqh1ymn"]
 
 [ext_resource type="Script" path="res://scenes/components/Talkable/talkable_component.gd" id="1_v0gs2"]
 [ext_resource type="PackedScene" uid="uid://b0tdpokc45k04" path="res://scenes/NLP client/nlp_client.tscn" id="2_ptb8g"]
 [ext_resource type="PackedScene" uid="uid://bf8p1s2uwln3e" path="res://scenes/components/Talkable/text_entry.tscn" id="2_w2yxh"]
+[ext_resource type="Shader" path="res://assets/shaders/wavy_text.gdshader" id="4_8imgb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i52st"]
+shader = ExtResource("4_8imgb")
+shader_parameter/height = 3.0
+shader_parameter/frequency = 1.0
+shader_parameter/speed = 2.0
+
+[sub_resource type="Shader" id="Shader_3wih3"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noiseTexture : repeat_enable;
+uniform float speed : hint_range(0.01,1.0) = 0.1; 
+uniform float amplitude : hint_range(0.01,1.0) = 0.2; 
+uniform float aliasing = 0.01;
+
+float circle(vec2 center, float radius, vec2 p){
+	return length(p - center) - radius;
+}
+
+void fragment(){
+	vec4 noise;
+	noise = texture(noiseTexture, UV + speed * (TIME)) - 0.5;
+	
+	float sdf = circle(vec2(0.5, 0.5), 0.4, UV) + amplitude * noise.x;
+	
+	COLOR.rgb = vec3(0.5, 0.6, 0.8);
+	if (sdf > 0.0)
+        COLOR = vec4(0.0, 0.0, 0.0, 0.0);
+    else
+		COLOR.a = smoothstep(sdf, sdf + aliasing, 0.0);
+}
+
+"
+
+[sub_resource type="Gradient" id="Gradient_lxuwm"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m0y86"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pdyux"]
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_lxuwm")
+noise = SubResource("FastNoiseLite_m0y86")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0b66"]
+shader = SubResource("Shader_3wih3")
+shader_parameter/speed = 0.1
+shader_parameter/amplitude = 0.2
+shader_parameter/aliasing = 0.01
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_pdyux")
+
+[sub_resource type="Gradient" id="Gradient_hy0yf"]
+colors = PackedColorArray(0, 0, 0, 1, 1.92523e-07, 0.946784, 0.952028, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uyhbi"]
+gradient = SubResource("Gradient_hy0yf")
+fill_from = Vector2(0, 1)
 
 [node name="TalkableComponent" type="Control"]
+top_level = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,10 +72,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v0gs2")
 
-[node name="NLPClient" parent="." node_paths=PackedStringArray("text_entry") instance=ExtResource("2_ptb8g")]
+[node name="NLPClient" parent="." node_paths=PackedStringArray("text_entry", "response_text") instance=ExtResource("2_ptb8g")]
+show_terminal = false
 text_entry = NodePath("../TextEntry/LineEdit")
+response_text = NodePath("../TextEntry/Reponse")
 
 [node name="TextEntry" parent="." instance=ExtResource("2_w2yxh")]
 layout_mode = 1
+
+[node name="Text" parent="TextEntry" index="1"]
+anchors_preset = -1
+anchor_top = 0.86
+anchor_bottom = 0.86
+grow_vertical = 0
+
+[node name="Reponse" type="Label" parent="TextEntry"]
+material = SubResource("ShaderMaterial_i52st")
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.127
+anchor_right = 0.5
+anchor_bottom = 0.127
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="TextureRect" parent="TextEntry/Reponse"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_e0b66")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.296
+offset_bottom = 60.704
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_uyhbi")
+expand_mode = 5
 
 [editable path="TextEntry"]
