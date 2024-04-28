@@ -15,4 +15,4 @@ func _unhandled_input(event):
 		interact(interact_object)
 
 func interact(object):
-	object.start_chat(get_parent())
+	object.interact(get_parent())

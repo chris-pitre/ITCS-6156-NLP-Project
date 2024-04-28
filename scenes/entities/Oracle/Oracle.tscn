@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7g8fcruocnbc"]
 
 [ext_resource type="Texture2D" uid="uid://bo1j27ts7kv4w" path="res://assets/sprites/forest_tileset/TX Props.png" id="1_vsvph"]
-[ext_resource type="PackedScene" uid="uid://dwppdolqh1ymn" path="res://scenes/components/Talkable/talkable_component.tscn" id="2_2nm1n"]
+[ext_resource type="PackedScene" uid="uid://dwppdolqh1ymn" path="res://scenes/components/Interactable/Talkable/talkable_component.tscn" id="2_2nm1n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_arujg"]
 bounce = 0.5
