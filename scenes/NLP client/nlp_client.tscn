@@ -1,10 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0tdpokc45k04"]
+[gd_scene load_steps=2 format=3 uid="uid://b0tdpokc45k04"]
 
 [ext_resource type="Script" path="res://scenes/NLP client/nlp_client.gd" id="1_yufmu"]
-[ext_resource type="PackedScene" uid="uid://bf8p1s2uwln3e" path="res://scenes/text_entry.tscn" id="2_mao8l"]
 
 [node name="NLPClient" type="Node"]
 script = ExtResource("1_yufmu")
 show_terminal = true
-
-[node name="TextEntry" parent="." instance=ExtResource("2_mao8l")]
