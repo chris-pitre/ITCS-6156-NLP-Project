@@ -25,6 +25,7 @@ class ClassificationDataset(Dataset):
         self.input_ids = []
         self.attention_masks = []
         self.labels = []
+        self.original_text = []
 
         label_map = {
             0: "key",
@@ -44,9 +45,10 @@ class ClassificationDataset(Dataset):
             self.input_ids.append(torch.tensor(encodings_dict['input_ids']))
             self.attention_masks.append(torch.tensor(encodings_dict['attention_mask']))
             self.labels.append(label_map[line_class])
+            self.original_text.append(line_text)
 
     def __len__(self):
         return len(self.input_ids)
     
     def __getitem__(self, idx):
-        return self.input_ids[idx], self.attention_masks[idx], self.labels[idx]
+        return self.input_ids[idx], self.attention_masks[idx], self.labels[idx], self.original_text[idx]
