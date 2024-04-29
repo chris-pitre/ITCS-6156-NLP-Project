@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://44nb2qsqrbss"]
+
+[ext_resource type="PackedScene" uid="uid://b3rdo7t8i3ppy" path="res://scenes/components/Interactable/Pickupable/pickupable_component.tscn" id="1_cj7hi"]
+
+[node name="Key" type="Node2D"]
+
+[node name="PickupableComponent" parent="." instance=ExtResource("1_cj7hi")]
+position = Vector2(603.399, 117.752)
