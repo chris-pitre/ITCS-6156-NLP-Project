@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l3jk"]
 size = Vector2(32, 32)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -22,6 +22,7 @@ push_force = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2l3jk")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="InteractComponent" parent="." instance=ExtResource("3_dlpwo")]
 

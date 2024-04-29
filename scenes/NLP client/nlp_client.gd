@@ -27,6 +27,7 @@ func _process(delta):
 func send_message(message: String):
 	print("Sent message!")
 	udp.put_packet(message.to_utf8_buffer())
+	response_text.text = "..."
 	
 func _input(event):
 	if event.is_action_pressed("ui_accept"): 

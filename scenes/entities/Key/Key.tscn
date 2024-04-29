@@ -1,12 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://44nb2qsqrbss"]
 
-[ext_resource type="Script" path="res://scenes/entities/Key/Key.gd" id="1_b8ugd"]
 [ext_resource type="PackedScene" uid="uid://b3rdo7t8i3ppy" path="res://scenes/components/Interactable/Pickupable/pickupable_component.tscn" id="1_cj7hi"]
 
-[node name="Key" type="Node2D"]
-script = ExtResource("1_b8ugd")
+[sub_resource type="CircleShape2D" id="CircleShape2D_2p6va"]
 
-[node name="PickupableComponent" parent="." instance=ExtResource("1_cj7hi")]
-position = Vector2(603.399, 117.752)
+[node name="Key" type="StaticBody2D" groups=["Key"]]
+collision_layer = 8
+collision_mask = 0
 
-[connection signal="picked_up" from="PickupableComponent" to="." method="_on_picked_up"]
+[node name="PickupableComponent" parent="." node_paths=PackedStringArray("collider") instance=ExtResource("1_cj7hi")]
+collider = NodePath("../CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2p6va")
+debug_color = Color(0.654902, 0.517647, 0.0901961, 0.419608)

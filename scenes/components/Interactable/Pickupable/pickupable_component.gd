@@ -1,6 +1,8 @@
 class_name PickupableComponent extends InteractableComponent
 
-signal picked_up(pick_upper: Node)
+@export var collider: CollisionShape2D
 
 func interact(interactor: Node):
-	picked_up.emit(interactor)
+	get_parent().reparent(interactor)
+	if collider:
+		collider.disabled = true

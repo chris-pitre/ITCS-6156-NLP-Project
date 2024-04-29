@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="NLP-Project"
-run/main_scene="res://scenes/levels/test_level.tscn"
+run/main_scene="res://scenes/levels/Main/main_level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -70,3 +70,8 @@ Interact={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Entities"
 2d_physics/layer_3="Terrain"
+2d_physics/layer_4="Pickups"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.0980392, 0.0980392, 0.0980392, 1)
