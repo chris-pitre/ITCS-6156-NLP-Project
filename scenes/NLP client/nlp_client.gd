@@ -1,16 +1,14 @@
 extends Node
 
 var udp := PacketPeerUDP.new()
-var python_script_path:= "res://src/Python-NLP/server.py"
+var python_script_path:= "src/Python-NLP/server.py"
 @export var show_terminal: bool
 var pid: int
 
 @export var text_entry: LimitedTextInput
 @export var response_text: Label
-@onready var response_box: TextureRect = response_text.get_node("ColorRect")
 
 func _ready():
-	
 	pid = OS.create_process("python", [python_script_path], show_terminal)
 	udp.connect_to_host("127.0.0.1", 12345)
 
@@ -25,7 +23,7 @@ func _process(delta):
 		var response = udp.get_packet().get_string_from_utf8()
 		print(response)
 		response_text.text = response
-		response_box.position.x = -response_box.size.x
+
 func send_message(message: String):
 	print("Sent message!")
 	udp.put_packet(message.to_utf8_buffer())

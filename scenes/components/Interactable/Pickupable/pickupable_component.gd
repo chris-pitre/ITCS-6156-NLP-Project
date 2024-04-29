@@ -1,4 +1,6 @@
 class_name PickupableComponent extends InteractableComponent
 
+signal picked_up(pick_upper: Node)
+
 func interact(interactor: Node):
-	pass
+	picked_up.emit(interactor)

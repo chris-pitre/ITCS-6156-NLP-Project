@@ -47,5 +47,3 @@ animation = &"closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mlha6")
-
-[connection signal="opened" from="OpenableComponent" to="." method="_on_opened"]

@@ -33,3 +33,5 @@ shape = SubResource("CapsuleShape2D_a0nnp")
 
 [node name="TalkableComponent" parent="." instance=ExtResource("2_2nm1n")]
 visible = false
+offset_top = -45.0
+offset_bottom = 35.0

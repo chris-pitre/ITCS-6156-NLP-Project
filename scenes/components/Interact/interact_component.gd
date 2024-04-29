@@ -8,7 +8,6 @@ func _process(delta):
 	for entity in zone.get_overlapping_bodies():
 		for node in entity.get_children():
 			if node is InteractableComponent:
-				print(node)
 				interact_object = node as InteractableComponent
 				break
 

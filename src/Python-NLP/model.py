@@ -54,6 +54,23 @@ def classify_response(prompt: str) -> str:
     model.resize_token_embeddings(len(tokenizer))
     return classify_response_no_load(prompt, tokenizer, model)
 
+def class_response(label: str) -> str:
+    small_talk = [
+                    "You are asking the wrong questions", 
+                    "What a meaningless question", 
+                    "The winds of fate are turbelent. There are times when even I cannot see what lies ahead",
+                    "What a great question.\n\n It has an answer, I'm sure..."
+    ]
+    match label:
+        case "key": return "You will find the key hidden behind the tree"
+        case "door": return "The door may be locked, but all locks have a key"
+        case "location": return "These are the ruins of Eldoria"
+        case "identity": return "I am the Oracle of Eldoria"
+        case "goal": return "To progress on your journey, you will need to travel north"
+        case "small_talk": return random.choice(small_talk)
+        case _ : return "Now I have become error"
+
+
     
 def classify_response_no_load(prompt: str, tokenizer: GPT2Tokenizer, model: GPT2LMHeadModel) -> str:
     input_ids = tokenizer.encode(f"<bos>Question: {prompt}\n", return_tensors="pt")

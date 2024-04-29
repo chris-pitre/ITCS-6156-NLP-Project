@@ -1,9 +1,7 @@
 class_name OpenableComponent extends InteractableComponent
 
-@export var open: bool = false
-signal opened
+signal open_attempt(opener: Node)
 
 
 func interact(interactor: Node):
-	open = true
-	opened.emit()
+	open_attempt.emit(interactor)
