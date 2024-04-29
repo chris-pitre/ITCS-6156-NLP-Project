@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://dwppdolqh1ymn"]
 
-[ext_resource type="Script" path="res://scenes/components/Talkable/talkable_component.gd" id="1_v0gs2"]
+[ext_resource type="Script" path="res://scenes/components/Interactable/Talkable/talkable_component.gd" id="1_v0gs2"]
 [ext_resource type="PackedScene" uid="uid://b0tdpokc45k04" path="res://scenes/NLP client/nlp_client.tscn" id="2_ptb8g"]
-[ext_resource type="PackedScene" uid="uid://bf8p1s2uwln3e" path="res://scenes/components/Talkable/text_entry.tscn" id="2_w2yxh"]
+[ext_resource type="PackedScene" uid="uid://bf8p1s2uwln3e" path="res://scenes/components/Interactable/Talkable/text_entry.tscn" id="2_w2yxh"]
 [ext_resource type="Shader" path="res://assets/shaders/wavy_text.gdshader" id="4_8imgb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i52st"]

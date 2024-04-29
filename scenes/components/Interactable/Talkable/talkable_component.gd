@@ -1,21 +1,23 @@
 class_name TalkableComponent
-extends Control
+extends InteractableComponent
 
 @onready var chat_box: LineEdit = $TextEntry/LineEdit
 var activated: bool = false
 var chatter: Node
 
-func start_chat(player):
+func interact(interactor: Node):
 	visible = true
 	chat_box.grab_focus()
-	chatter = player
+	chatter = interactor
 	chatter.process_mode = Node.PROCESS_MODE_DISABLED
+	activated = true
 
 func end_chat():
 	visible = false
 	chat_box.release_focus()
 	chatter.process_mode = Node.PROCESS_MODE_INHERIT
+	activated = false
 	
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") and activated:
 		end_chat()
