@@ -1,7 +1,7 @@
 extends Node
 
 var udp := PacketPeerUDP.new()
-var python_script_path:= "src/Python-NLP/server.py"
+var python_script_path:= "res://src/Python-NLP/server.py"
 @export var show_terminal: bool
 var pid: int
 
