@@ -9,6 +9,7 @@ extends Node2D
 @export var max_speed: int = 150
 @export var acceleration: int = 1000
 @export var friction: int = 600
+@export var push_force: int = 100
 
 var input := Vector2.ZERO
 
@@ -30,6 +31,12 @@ func do_movement(delta):
 		character_body.velocity = character_body.velocity.move_toward(Vector2.ZERO, friction * delta)
 	else:
 		character_body.velocity = character_body.velocity.move_toward(input * max_speed, acceleration * delta)
-		
 	character_body.move_and_slide()
-	
+	handle_collisions()
+
+func handle_collisions():
+	for i in character_body.get_slide_collision_count():
+		var collision = character_body.get_slide_collision(i)
+		var pushable_object = collision.get_collider() as RigidBody2D
+		if pushable_object:
+			pushable_object.apply_central_force(-collision.get_normal() * push_force)

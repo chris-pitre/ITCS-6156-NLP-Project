@@ -40,7 +40,6 @@ def generate_response(prompt: str) -> str:
                             pad_token_id=tokenizer.eos_token_id
                             )
 
-
     # Decode and print the generated text
     generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
     return generated_text

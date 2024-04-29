@@ -14,5 +14,4 @@ layer_1/tile_data = PackedInt32Array(131074, 262147, 2, 196610, 262147, 2, 26214
 position = Vector2(567, 473)
 
 [node name="Oracle" parent="." instance=ExtResource("3_v6omd")]
-position = Vector2(578, 172)
-gravity_scale = 0.0
+position = Vector2(665, 458)
