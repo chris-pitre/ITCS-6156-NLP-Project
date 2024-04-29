@@ -1,4 +1,4 @@
-extends InteractableComponent
+class_name OpenableComponent extends InteractableComponent
 
 @export var open: bool = false
 signal opened

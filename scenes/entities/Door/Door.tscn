@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://cscrgo0vd5tlh"]
+
+[ext_resource type="Script" path="res://scenes/entities/Door/Door.gd" id="1_lqq3o"]
+[ext_resource type="Texture2D" uid="uid://bo1j27ts7kv4w" path="res://assets/sprites/forest_tileset/TX Props.png" id="1_mm1bx"]
+[ext_resource type="PackedScene" uid="uid://cplkk0ypvx4d4" path="res://scenes/components/Interactable/Openable/openable_component.tscn" id="3_raxxp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c17n7"]
+atlas = ExtResource("1_mm1bx")
+region = Rect2(29, 103, 37, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tbw5"]
+atlas = ExtResource("1_mm1bx")
+region = Rect2(29, 166, 37, 53)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6l2f2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c17n7")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tbw5")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlha6"]
+size = Vector2(37, 50)
+
+[node name="Door" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_lqq3o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6l2f2")
+animation = &"closed"
+
+[node name="OpenableComponent" parent="." instance=ExtResource("3_raxxp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mlha6")
+
+[connection signal="opened" from="OpenableComponent" to="." method="_on_opened"]
